@@ -1,4 +1,5 @@
 from .send_requests import *
+import json
 
 async def delete_if_exist(dic,keys:list):
     for key in keys:
@@ -54,30 +55,59 @@ class User:
         
         for key, value in kwargs.items():
             setattr(self, key, value)
-    
+
+    def to_dict(self):
+        """Serialize the User object to a dictionary suitable for JSON encoding"""
+        return {
+            "username": self.username,
+            "proxies": self.proxies,
+            "inbounds": self.inbounds,
+            "expire": self.expire,
+            "data_limit": self.data_limit,
+            "data_limit_reset_strategy": self.data_limit_reset_strategy,
+            "status": self.status,
+            "used_traffic": self.used_traffic,
+            "lifetime_used_traffic": self.lifetime_used_traffic,
+            "created_at": self.created_at,
+            "links": self.links,
+            "subscription_url": self.subscription_url,
+            "excluded_inbounds": self.excluded_inbounds,
+            "note": self.note,
+            "on_hold_timeout": self.on_hold_timeout,
+            "on_hold_expire_duration": self.on_hold_expire_duration,
+            "sub_last_user_agent": self.sub_last_user_agent,
+            "online_at": self.online_at,
+            "sub_updated_at": self.sub_updated_at,
+            "auto_delete_in_days": self.auto_delete_in_days
+        }
+
+    def to_json(self):
+        """Convert the object to a JSON string"""
+        return json.dumps(self.to_dict())
+
     def __str__(self):
         """Returns a readable string representation of the User object"""
         attrs = [
-            f"'username':'{self.username}'",
-            f"'status':'{self.status}'",
-            f"'data_limit':'{self.data_limit}'",
-            f"'expire':'{self.expire}'",
-            f"'used_traffic':'{self.used_traffic}'",
-            f"'lifetime_used_traffic':'{self.lifetime_used_traffic}'",
-            f"'created_at':'{self.created_at}'",
-            f"'subscription_url':'{self.subscription_url}'",
-            f"'note':'{self.note}'",
-            f"'on_hold_timeout':'{self.on_hold_timeout}'",
-            f"'on_hold_expire_duration':'{self.on_hold_expire_duration}'",
-            f"'sub_updated_at':'{self.sub_updated_at}'",
-            f"'online_at':'{self.online_at}'",
-            f"'auto_delete_in_days':'{self.auto_delete_in_days}'"
+            f"username='{self.username}'",
+            f"status='{self.status}'",
+            f"data_limit={self.data_limit}",
+            f"expire={self.expire}",
+            f"used_traffic={self.used_traffic}",
+            f"lifetime_used_traffic={self.lifetime_used_traffic}",
+            f"created_at='{self.created_at}'",
+            f"subscription_url='{self.subscription_url}'",
+            f"note='{self.note}'",
+            f"on_hold_timeout={self.on_hold_timeout}",
+            f"on_hold_expire_duration={self.on_hold_expire_duration}",
+            f"sub_updated_at={self.sub_updated_at}",
+            f"online_at={self.online_at}",
+            f"auto_delete_in_days={self.auto_delete_in_days}"
         ]
-        return "{" + f"{', '.join(attrs)}" + "}"
-    
+        return f"User({', '.join(attrs)})"
+
     def __repr__(self):
-        """Returns the same as __str__"""
         return self.__str__()
+
 
 class UserMethods:
     async def add_user(self, user: User, token: dict):
