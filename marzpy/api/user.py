@@ -73,7 +73,7 @@ class User:
             f"online_at:{self.online_at}",
             f"auto_delete_in_days:{self.auto_delete_in_days}"
         ]
-        return "{" + f"{', '.join(attrs}" + "}"
+        return "{" + f"{', '.join(attrs)}" + "}"
     
     def __repr__(self):
         """Returns the same as __str__"""
