@@ -58,20 +58,20 @@ class User:
     def __str__(self):
         """Returns a readable string representation of the User object"""
         attrs = [
-            f"username:'{self.username}'",
-            f"status:'{self.status}'",
-            f"data_limit:{self.data_limit}",
-            f"expire:{self.expire}",
-            f"used_traffic:{self.used_traffic}",
-            f"lifetime_used_traffic:{self.lifetime_used_traffic}",
-            f"created_at:'{self.created_at}'",
-            f"subscription_url:'{self.subscription_url}'",
-            f"note:'{self.note}'",
-            f"on_hold_timeout:{self.on_hold_timeout}",
-            f"on_hold_expire_duration:{self.on_hold_expire_duration}",
-            f"sub_updated_at:{self.sub_updated_at}",
-            f"online_at:{self.online_at}",
-            f"auto_delete_in_days:{self.auto_delete_in_days}"
+            f"'username':'{self.username}'",
+            f"'status':'{self.status}'",
+            f"'data_limit':{self.data_limit}",
+            f"'expire':{self.expire}",
+            f"'used_traffic':{self.used_traffic}",
+            f"'lifetime_used_traffic':{self.lifetime_used_traffic}",
+            f"'created_at':'{self.created_at}'",
+            f"'subscription_url':'{self.subscription_url}'",
+            f"'note':'{self.note}'",
+            f"'on_hold_timeout':{self.on_hold_timeout}",
+            f"'on_hold_expire_duration':{self.on_hold_expire_duration}",
+            f"'sub_updated_at':{self.sub_updated_at}",
+            f"'online_at':{self.online_at}",
+            f"'auto_delete_in_days':{self.auto_delete_in_days}"
         ]
         return "{" + f"{', '.join(attrs)}" + "}"
     
