@@ -1,10 +1,10 @@
 # marzpy
 A Python library that helps you easily use [Marzban](https://github.com/Gozargah/Marzban)'s API panel
 >[!IMPORTANT]
->**Status:** Working on new update 🔥
+>**Status:** Working on rebuilding old classes and methods 🧊
 ## installation
 ```shell
-pip install marzpy --upgrade
+pip install git+https://github.com/Alberto-Kali/marzpy.git --upgrade
 ```
 requirements : ```aiohttp```
 # How To Use
