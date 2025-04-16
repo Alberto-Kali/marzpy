@@ -1,5 +1,4 @@
 from .send_requests import *
-import json
 
 async def delete_if_exist(dic,keys:list):
     for key in keys:
@@ -74,7 +73,7 @@ class User:
             f"online_at={self.online_at}",
             f"auto_delete_in_days={self.auto_delete_in_days}"
         ]
-        return json({', '.join(attrs})"
+        return "{', '.join(attrs}"
     
     def __repr__(self):
         """Returns the same as __str__"""
