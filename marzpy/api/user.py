@@ -1,4 +1,5 @@
 from .send_requests import *
+import json
 
 async def delete_if_exist(dic,keys:list):
     for key in keys:
@@ -22,15 +23,14 @@ class User:
         links=[],
         subscription_url="",
         excluded_inbounds={},
-        note = "",
-        on_hold_timeout= 0,
-        on_hold_expire_duration = 0,
-        sub_updated_at = 0,
-        online_at = 0,
-        sub_last_user_agent:str = "",
-        auto_delete_in_days:int = 0,
-        **_, # Stop causing error when marzban update
-        
+        note="",
+        on_hold_timeout=0,
+        on_hold_expire_duration=0,
+        sub_updated_at=0,
+        online_at=0,
+        sub_last_user_agent: str = "",
+        auto_delete_in_days: int = 0,
+        **kwargs
     ):
         self.username = username
         self.proxies = proxies
@@ -52,6 +52,33 @@ class User:
         self.online_at = online_at
         self.sub_updated_at = sub_updated_at
         self.auto_delete_in_days = auto_delete_in_days
+        
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+    
+    def __str__(self):
+        """Returns a readable string representation of the User object"""
+        attrs = [
+            f"username='{self.username}'",
+            f"status='{self.status}'",
+            f"data_limit={self.data_limit}",
+            f"expire={self.expire}",
+            f"used_traffic={self.used_traffic}",
+            f"lifetime_used_traffic={self.lifetime_used_traffic}",
+            f"created_at='{self.created_at}'",
+            f"subscription_url='{self.subscription_url}'",
+            f"note='{self.note}'",
+            f"on_hold_timeout={self.on_hold_timeout}",
+            f"on_hold_expire_duration={self.on_hold_expire_duration}",
+            f"sub_updated_at={self.sub_updated_at}",
+            f"online_at={self.online_at}",
+            f"auto_delete_in_days={self.auto_delete_in_days}"
+        ]
+        return json({', '.join(attrs})"
+    
+    def __repr__(self):
+        """Returns the same as __str__"""
+        return self.__str__()
 
 class UserMethods:
     async def add_user(self, user: User, token: dict):
